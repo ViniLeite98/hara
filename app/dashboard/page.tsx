@@ -1,4 +1,5 @@
 "use client";
+
 export default function Login() {
   return (
     <main
@@ -28,9 +29,9 @@ export default function Login() {
             boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
           }}
         >
-          <button
-            type="button"
-            onClick={() => alert("Ainda não integrado. Próximo passo: Supabase + Google.")}
+          {/* Botão simulando "Google" (sem integração real) */}
+          <a
+            href="/dashboard"
             style={{
               width: "100%",
               padding: "12px 14px",
@@ -38,13 +39,15 @@ export default function Login() {
               border: "1px solid #111",
               background: "#111",
               color: "#fff",
-              cursor: "pointer",
+              textDecoration: "none",
+              display: "block",
+              textAlign: "center",
               fontWeight: 700,
               fontSize: 15,
             }}
           >
             Entrar com Google
-          </button>
+          </a>
 
           <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "18px 0" }}>
             <div style={{ flex: 1, height: 1, background: "#e6e8eb" }} />
@@ -99,7 +102,7 @@ export default function Login() {
               fontSize: 15,
             }}
           >
-            Entrar (em breve)
+            Entrar com e-mail (em breve)
           </button>
 
           <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
