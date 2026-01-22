@@ -1,142 +1,154 @@
 "use client";
 
-export default function Login() {
+export default function Dashboard() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
         padding: 24,
         fontFamily: "system-ui",
         background: "#0b0f19",
+        color: "#fff",
       }}
     >
-      <div style={{ width: "100%", maxWidth: 460 }}>
-        <div style={{ marginBottom: 16, color: "#fff" }}>
-          <h1 style={{ margin: 0, fontSize: 36, letterSpacing: -0.5 }}>Hara</h1>
-          <p style={{ marginTop: 8, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-            Faça login para acessar o painel. (Integração real com Google será o próximo passo.)
-          </p>
-        </div>
-
-        <div
+      <div style={{ maxWidth: 980, margin: "0 auto" }}>
+        {/* Header */}
+        <header
           style={{
-            background: "#ffffff",
-            borderRadius: 16,
-            padding: 20,
-            border: "1px solid rgba(0,0,0,0.08)",
-            boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            marginBottom: 18,
           }}
         >
-          {/* Botão simulando "Google" (sem integração real) */}
-          <a
-            href="/dashboard"
-            style={{
-              width: "100%",
-              padding: "12px 14px",
-              borderRadius: 12,
-              border: "1px solid #111",
-              background: "#111",
-              color: "#fff",
-              textDecoration: "none",
-              display: "block",
-              textAlign: "center",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
-            Entrar com Google
-          </a>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "18px 0" }}>
-            <div style={{ flex: 1, height: 1, background: "#e6e8eb" }} />
-            <span style={{ color: "#6b7280", fontSize: 12 }}>ou</span>
-            <div style={{ flex: 1, height: 1, background: "#e6e8eb" }} />
+          <div>
+            <h1 style={{ margin: 0, fontSize: 34, letterSpacing: -0.5 }}>Dashboard</h1>
+            <p style={{ marginTop: 8, marginBottom: 0, color: "rgba(255,255,255,0.75)" }}>
+              Em breve: calendário de disponibilidade e aprovações.
+            </p>
           </div>
 
-          <label style={{ display: "block", fontSize: 13, color: "#111827", marginBottom: 6 }}>
-            E-mail
-          </label>
-          <input
-            placeholder="seuemail@exemplo.com"
-            disabled
-            style={{
-              width: "100%",
-              padding: "11px 12px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f9fafb",
-              marginBottom: 12,
-            }}
-          />
-
-          <label style={{ display: "block", fontSize: 13, color: "#111827", marginBottom: 6 }}>
-            Senha
-          </label>
-          <input
-            placeholder="••••••••"
-            disabled
-            style={{
-              width: "100%",
-              padding: "11px 12px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f9fafb",
-              marginBottom: 16,
-            }}
-          />
-
-          <button
-            type="button"
-            disabled
-            style={{
-              width: "100%",
-              padding: "12px 14px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f3f4f6",
-              color: "#9ca3af",
-              cursor: "not-allowed",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
-            Entrar com e-mail (em breve)
-          </button>
-
-          <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <a
               href="/"
               style={{
-                flex: 1,
-                textAlign: "center",
-                textDecoration: "none",
                 padding: "10px 12px",
                 borderRadius: 12,
-                border: "1px solid #e6e8eb",
-                color: "#111",
+                border: "1px solid rgba(255,255,255,0.2)",
+                textDecoration: "none",
+                color: "#fff",
+                display: "inline-block",
               }}
             >
-              Voltar
+              Home
             </a>
 
             <a
-              href="/dashboard"
+              href="/login"
               style={{
-                flex: 1,
-                textAlign: "center",
-                textDecoration: "none",
                 padding: "10px 12px",
                 borderRadius: 12,
-                border: "1px solid #e6e8eb",
-                color: "#111",
+                border: "1px solid #fff",
+                background: "#fff",
+                color: "#0b0f19",
+                textDecoration: "none",
+                display: "inline-block",
+                fontWeight: 700,
               }}
             >
-              Dashboard
+              Sair
             </a>
           </div>
-        </div>
+        </header>
+
+        {/* Cards */}
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: 12,
+            marginBottom: 14,
+          }}
+        >
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Hoje</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Terapeutas disponíveis
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Pendências</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Aprovações aguardando
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Este mês</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Folgas registradas
+            </div>
+          </div>
+        </section>
+
+        {/* Área principal (placeholder) */}
+        <section
+          style={{
+            background: "#ffffff",
+            color: "#0b0f19",
+            borderRadius: 16,
+            border: "1px solid rgba(0,0,0,0.08)",
+            padding: 18,
+            boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
+          }}
+        >
+          <h2 style={{ margin: 0, fontSize: 20 }}>Calendário (em breve)</h2>
+          <p style={{ marginTop: 8, color: "#4b5563", lineHeight: 1.6 }}>
+            Aqui vai entrar o calendário mostrando a capacidade por dia (considerando folgas e aprovações).
+          </p>
+
+          <div
+            style={{
+              marginTop: 14,
+              padding: 14,
+              borderRadius: 14,
+              border: "1px dashed #d1d5db",
+              background: "#f9fafb",
+              color: "#6b7280",
+            }}
+          >
+            Placeholder: calendário + filtros (mês, terapeuta, status).
+          </div>
+        </section>
       </div>
     </main>
   );
