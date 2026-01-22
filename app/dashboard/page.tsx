@@ -1,31 +1,12 @@
-export default function Dashboard() {
+export default function Home() {
   return (
-    <main
-      style={{
-        padding: 32,
-        fontFamily: "system-ui",
-        maxWidth: 960,
-        margin: "0 auto",
-      }}
-    >
-      <h1 style={{ fontSize: 32, marginBottom: 8 }}>Dashboard</h1>
-      <p style={{ marginTop: 0, lineHeight: 1.6 }}>
-        Em breve: calendário de disponibilidade e aprovações.
-      </p>
+    <main style={{ padding: 32, fontFamily: "system-ui" }}>
+      <h1>Hara</h1>
+      <p>Site em construção.</p>
 
-      <div style={{ marginTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
-        <a
-          href="/"
-          style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "1px solid #ccc",
-            textDecoration: "none",
-            display: "inline-block",
-          }}
-        >
-          Voltar para a Home
-        </a>
+      <div style={{ marginTop: 16, display: "flex", gap: 12 }}>
+        <a href="/login">Entrar</a>
+        <a href="/dashboard">Dashboard</a>
       </div>
     </main>
   );
