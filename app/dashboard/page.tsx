@@ -1,155 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
+
 export default function Dashboard() {
+  const router = useRouter();
+  const [email, setEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase.auth.getSession();
+      const session = data.session;
+
+      if (!session) {
+        router.replace("/login");
+        return;
+      }
+
+      setEmail(session.user.email ?? null);
+    })();
+  }, [router]);
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    router.replace("/login");
+  };
+
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        padding: 24,
-        fontFamily: "system-ui",
-        background: "#0b0f19",
-        color: "#fff",
-      }}
-    >
-      <div style={{ maxWidth: 980, margin: "0 auto" }}>
-        {/* Header */}
-        <header
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-            marginBottom: 18,
-          }}
-        >
-          <div>
-            <h1 style={{ margin: 0, fontSize: 34, letterSpacing: -0.5 }}>Dashboard</h1>
-            <p style={{ marginTop: 8, marginBottom: 0, color: "rgba(255,255,255,0.75)" }}>
-              Em breve: calendário de disponibilidade e aprovações.
-            </p>
-          </div>
-
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <a
-              href="/"
-              style={{
-                padding: "10px 12px",
-                borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.2)",
-                textDecoration: "none",
-                color: "#fff",
-                display: "inline-block",
-              }}
-            >
-              Home
-            </a>
-
-            <a
-              href="/login"
-              style={{
-                padding: "10px 12px",
-                borderRadius: 12,
-                border: "1px solid #fff",
-                background: "#fff",
-                color: "#0b0f19",
-                textDecoration: "none",
-                display: "inline-block",
-                fontWeight: 700,
-              }}
-            >
-              Sair
-            </a>
-          </div>
-        </header>
-
-        {/* Cards */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: 12,
-            marginBottom: 14,
-          }}
-        >
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.08)",
-              padding: 16,
-              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
-            }}
+    <main style={{ padding: 32, fontFamily: "system-ui" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1 style={{ margin: 0 }}>Dashboard</h1>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a href="/" style={{ padding: "8px 12px", border: "1px solid #ddd", borderRadius: 10, textDecoration: "none" }}>
+            Home
+          </a>
+          <button
+            onClick={signOut}
+            style={{ padding: "8px 12px", border: "1px solid #111", borderRadius: 10, cursor: "pointer" }}
           >
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Hoje</div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
-            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
-              Terapeutas disponíveis
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.08)",
-              padding: 16,
-              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
-            }}
-          >
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Pendências</div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
-            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
-              Aprovações aguardando
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: 16,
-              border: "1px solid rgba(255,255,255,0.08)",
-              padding: 16,
-              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
-            }}
-          >
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Este mês</div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>—</div>
-            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
-              Folgas registradas
-            </div>
-          </div>
-        </section>
-
-        {/* Área principal (placeholder) */}
-        <section
-          style={{
-            background: "#ffffff",
-            color: "#0b0f19",
-            borderRadius: 16,
-            border: "1px solid rgba(0,0,0,0.08)",
-            padding: 18,
-            boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
-          }}
-        >
-          <h2 style={{ margin: 0, fontSize: 20 }}>Calendário (em breve)</h2>
-          <p style={{ marginTop: 8, color: "#4b5563", lineHeight: 1.6 }}>
-            Aqui vai entrar o calendário mostrando a capacidade por dia (considerando folgas e aprovações).
-          </p>
-
-          <div
-            style={{
-              marginTop: 14,
-              padding: 14,
-              borderRadius: 14,
-              border: "1px dashed #d1d5db",
-              background: "#f9fafb",
-              color: "#6b7280",
-            }}
-          >
-            Placeholder: calendário + filtros (mês, terapeuta, status).
-          </div>
-        </section>
+            Sair
+          </button>
+        </div>
       </div>
-    </main>
-  );
-}
+
+      <p style={{ marginTop: 12 }}>
+        Logado como: <b>{email ?? "…"}</b>
