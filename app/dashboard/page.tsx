@@ -1,83 +1,147 @@
-export default function Login() {
+export default function Dashboard() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
         padding: 24,
         fontFamily: "system-ui",
         background: "#0b0f19",
+        color: "#fff",
       }}
     >
-      <div style={{ width: "100%", maxWidth: 460 }}>
-        <div style={{ marginBottom: 16, color: "#fff" }}>
-          <h1 style={{ margin: 0, fontSize: 36, letterSpacing: -0.5 }}>Hara</h1>
-          <p style={{ marginTop: 8, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-            Login (em breve). Por enquanto, acesse o Dashboard diretamente.
-          </p>
-        </div>
-
-        <div
+      <div style={{ maxWidth: 980, margin: "0 auto" }}>
+        <header
           style={{
-            background: "#ffffff",
-            borderRadius: 16,
-            padding: 20,
-            border: "1px solid rgba(0,0,0,0.08)",
-            boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            marginBottom: 18,
           }}
         >
-          <a
-            href="/dashboard"
-            style={{
-              width: "100%",
-              padding: "12px 14px",
-              borderRadius: 12,
-              border: "1px solid #111",
-              background: "#111",
-              color: "#fff",
-              textDecoration: "none",
-              display: "block",
-              textAlign: "center",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
-            Entrar (temporário)
-          </a>
+          <div>
+            <h1 style={{ margin: 0, fontSize: 34, letterSpacing: -0.5 }}>Dashboard</h1>
+            <p style={{ marginTop: 8, marginBottom: 0, color: "rgba(255,255,255,0.75)" }}>
+              Em breve: calendario de disponibilidade e aprovacoes.
+            </p>
+          </div>
 
-          <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <a
               href="/"
               style={{
-                flex: 1,
-                textAlign: "center",
-                textDecoration: "none",
                 padding: "10px 12px",
                 borderRadius: 12,
-                border: "1px solid #e6e8eb",
-                color: "#111",
+                border: "1px solid rgba(255,255,255,0.2)",
+                textDecoration: "none",
+                color: "#fff",
+                display: "inline-block",
               }}
             >
-              Voltar
+              Home
             </a>
 
             <a
-              href="/dashboard"
+              href="/login"
               style={{
-                flex: 1,
-                textAlign: "center",
-                textDecoration: "none",
                 padding: "10px 12px",
                 borderRadius: 12,
-                border: "1px solid #e6e8eb",
-                color: "#111",
+                border: "1px solid rgba(255,255,255,0.2)",
+                textDecoration: "none",
+                color: "#fff",
+                display: "inline-block",
               }}
             >
-              Dashboard
+              Login (em breve)
             </a>
           </div>
-        </div>
+        </header>
+
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: 12,
+            marginBottom: 14,
+          }}
+        >
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Hoje</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>-</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Terapeutas disponiveis
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Pendencias</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>-</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Aprovacoes aguardando
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: 16,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>Este mes</div>
+            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 6 }}>-</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 6 }}>
+              Folgas registradas
+            </div>
+          </div>
+        </section>
+
+        <section
+          style={{
+            background: "#ffffff",
+            color: "#0b0f19",
+            borderRadius: 16,
+            border: "1px solid rgba(0,0,0,0.08)",
+            padding: 18,
+            boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
+          }}
+        >
+          <h2 style={{ margin: 0, fontSize: 20 }}>Calendario (em breve)</h2>
+          <p style={{ marginTop: 8, color: "#4b5563", lineHeight: 1.6 }}>
+            Aqui vai entrar o calendario mostrando a capacidade por dia (considerando folgas e aprovacoes).
+          </p>
+
+          <div
+            style={{
+              marginTop: 14,
+              padding: 14,
+              borderRadius: 14,
+              border: "1px dashed #d1d5db",
+              background: "#f9fafb",
+              color: "#6b7280",
+            }}
+          >
+            Placeholder: calendario + filtros (mes, terapeuta, status).
+          </div>
+        </section>
       </div>
     </main>
   );
