@@ -2,23 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 
 export default function Dashboard() {
   const router = useRouter();
-  const [email, setEmail] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     (async () => {
       const { data } = await supabase.auth.getSession();
-      const session = data.session;
 
-      if (!session) {
+      if (!data.session) {
         router.replace("/login");
         return;
       }
 
-      setEmail(session.user.email ?? null);
+      setEmail(data.session.user.email || "");
     })();
   }, [router]);
 
@@ -29,15 +28,39 @@ export default function Dashboard() {
 
   return (
     <main style={{ padding: 32, fontFamily: "system-ui" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+        }}
+      >
         <h1 style={{ margin: 0 }}>Dashboard</h1>
+
         <div style={{ display: "flex", gap: 10 }}>
-          <a href="/" style={{ padding: "8px 12px", border: "1px solid #ddd", borderRadius: 10, textDecoration: "none" }}>
+          <a
+            href="/"
+            style={{
+              padding: "8px 12px",
+              border: "1px solid #ddd",
+              borderRadius: 10,
+              textDecoration: "none",
+            }}
+          >
             Home
           </a>
+
           <button
             onClick={signOut}
-            style={{ padding: "8px 12px", border: "1px solid #111", borderRadius: 10, cursor: "pointer" }}
+            style={{
+              padding: "8px 12px",
+              border: "1px solid #111",
+              borderRadius: 10,
+              cursor: "pointer",
+              background: "#111",
+              color: "#fff",
+            }}
           >
             Sair
           </button>
@@ -45,4 +68,10 @@ export default function Dashboard() {
       </div>
 
       <p style={{ marginTop: 12 }}>
-        Logado como: <b>{email ?? "…"}</b>
+        Logado como: <b>{email || "carregando"}</b>
+      </p>
+
+      <p>Em breve: calendario de disponibilidade e aprovacoes.</p>
+    </main>
+  );
+}
