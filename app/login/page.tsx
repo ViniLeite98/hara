@@ -1,19 +1,4 @@
-"use client";
-
-import { supabase } from "@/lib/supabaseClient";
-
 export default function Login() {
-  const signInWithGoogle = async () => {
-    const redirectTo = `${window.location.origin}/auth/callback`;
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo },
-    });
-
-    if (error) alert(error.message);
-  };
-
   return (
     <main
       style={{
@@ -29,7 +14,7 @@ export default function Login() {
         <div style={{ marginBottom: 16, color: "#fff" }}>
           <h1 style={{ margin: 0, fontSize: 36, letterSpacing: -0.5 }}>Hara</h1>
           <p style={{ marginTop: 8, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-            Faça login com Google para acessar o painel.
+            Login (em breve). Por enquanto, acesse o Dashboard diretamente.
           </p>
         </div>
 
@@ -42,9 +27,8 @@ export default function Login() {
             boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
           }}
         >
-          <button
-            type="button"
-            onClick={signInWithGoogle}
+          <a
+            href="/dashboard"
             style={{
               width: "100%",
               padding: "12px 14px",
@@ -52,13 +36,15 @@ export default function Login() {
               border: "1px solid #111",
               background: "#111",
               color: "#fff",
-              cursor: "pointer",
+              textDecoration: "none",
+              display: "block",
+              textAlign: "center",
               fontWeight: 700,
               fontSize: 15,
             }}
           >
-            Entrar com Google
-          </button>
+            Entrar (temporário)
+          </a>
 
           <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
             <a
