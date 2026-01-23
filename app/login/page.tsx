@@ -1,6 +1,19 @@
 "use client";
 
+import { supabase } from "@/lib/supabaseClient";
+
 export default function Login() {
+  const signInWithGoogle = async () => {
+    const redirectTo = `${window.location.origin}/auth/callback`;
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo },
+    });
+
+    if (error) alert(error.message);
+  };
+
   return (
     <main
       style={{
@@ -16,7 +29,7 @@ export default function Login() {
         <div style={{ marginBottom: 16, color: "#fff" }}>
           <h1 style={{ margin: 0, fontSize: 36, letterSpacing: -0.5 }}>Hara</h1>
           <p style={{ marginTop: 8, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-            Faça login para acessar o painel. (Integração real com Google será o próximo passo.)
+            Faça login com Google para acessar o painel.
           </p>
         </div>
 
@@ -29,9 +42,9 @@ export default function Login() {
             boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
           }}
         >
-          {/* Botão simulando "Google" (sem integração real) */}
-          <a
-            href="/dashboard"
+          <button
+            type="button"
+            onClick={signInWithGoogle}
             style={{
               width: "100%",
               padding: "12px 14px",
@@ -39,70 +52,12 @@ export default function Login() {
               border: "1px solid #111",
               background: "#111",
               color: "#fff",
-              textDecoration: "none",
-              display: "block",
-              textAlign: "center",
+              cursor: "pointer",
               fontWeight: 700,
               fontSize: 15,
             }}
           >
             Entrar com Google
-          </a>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "18px 0" }}>
-            <div style={{ flex: 1, height: 1, background: "#e6e8eb" }} />
-            <span style={{ color: "#6b7280", fontSize: 12 }}>ou</span>
-            <div style={{ flex: 1, height: 1, background: "#e6e8eb" }} />
-          </div>
-
-          <label style={{ display: "block", fontSize: 13, color: "#111827", marginBottom: 6 }}>
-            E-mail
-          </label>
-          <input
-            placeholder="seuemail@exemplo.com"
-            disabled
-            style={{
-              width: "100%",
-              padding: "11px 12px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f9fafb",
-              marginBottom: 12,
-            }}
-          />
-
-          <label style={{ display: "block", fontSize: 13, color: "#111827", marginBottom: 6 }}>
-            Senha
-          </label>
-          <input
-            placeholder="••••••••"
-            disabled
-            style={{
-              width: "100%",
-              padding: "11px 12px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f9fafb",
-              marginBottom: 16,
-            }}
-          />
-
-          <button
-            type="button"
-            disabled
-            style={{
-              width: "100%",
-              padding: "12px 14px",
-              borderRadius: 12,
-              border: "1px solid #e6e8eb",
-              background: "#f3f4f6",
-              color: "#9ca3af",
-              cursor: "not-allowed",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
-            Entrar com e-mail (em breve)
           </button>
 
           <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
